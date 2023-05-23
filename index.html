@@ -1,0 +1,146 @@
+<html>
+
+<head>
+    <title>Web Wordpad</title>
+    <!-- //source -->
+    <script src="https://kit.fontawesome.com/0b4aa1fa94.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link id="theme-link" rel="stylesheet" href="default-theme.css">
+    <link id="theme-link" rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body class="default-theme">
+    <div id="toolbar">
+        <div class="tools" id="file">
+            File
+            <div class="fileDropContent">
+                <div class="options">New File</div>
+                <div class="options">Save <span class="shortcut">Ctrl+S</span></div>
+                <div class="options">Print <span class="shortcut">Ctrl+p</span></div>
+                <div class="options">Preference</div>
+            </div>
+        </div>
+        <div class="tools" id="EditTool">Edit
+            <div class="EditDropContent">
+                <div class="options">Undo<span class="shortcut">Ctrl+Z</span></div>
+                <div class="options">Redo<span class="shortcut">Ctrl+Y</span></div>
+                <hr>
+                <div class="options" id="cut">Cut<span class="shortcut">Ctrl+X</span></div>
+                <div class="options" id="copy">Copy<span class="shortcut">Ctrl+C</span></div>
+                <div class="options" id="paste">Paste<span class="shortcut">Ctrl+V</span></div>
+                <hr>
+                <div class="options">Find<span class="shortcut">Ctrl+F</span></div>
+                <div class="options">Replace<span class="shortcut">Ctrl+H</span></div>
+
+
+
+            </div>
+        </div>
+        <div class="tools" id="Selection">Selection
+            <div class="SelectionDropContent">
+                <div class="options" id="selectAll">Select All<span class="shortcut">Ctrl+A</span></div>
+            </div>
+        </div>
+        <div class="tools" id="View">View
+            <div class="ViewDropContent">
+                <div class="options">Command palette <span class="shortcut">Ctrl+Shift+P</span></div>
+                <div class="options">C.Terminal</div>
+                <div class="options" id="themeSelector">Theme
+                    <div class="theme">light </div>
+                    <div class="theme">Dark </div>
+                    <div class="theme">Night </div>
+                    <div class="theme">spring + </div>
+                </div>
+                <div class="options">Explorer</div>
+                <div class="options">advance</div>
+
+            </div>
+        </div>
+        <div class="tools" id="Tools">Tools
+            <div class="ToolsDropContent">
+                <div class="options">colorpicker</div>
+                <div class="options">Symbols</div>
+            
+
+            </div>
+        </div>
+        <div class="tools" id="Run">Run<span><i class="fa-solid fa-chevron-down"></i>
+                <div class="RunDropContent">
+                    <div class="options">Debug</div>
+                    <div class="options">with breakpoits</div>
+                </div>
+            </span>
+
+        </div>
+        <div class="tools" id="Help">Help
+            <div class="HelpDropContent">
+                <div class="options">Tips</div>
+                <div class="options">Keyboard shortcut</div>
+                <div class="options">About</div>
+            </div>
+        </div>
+        <div class="quicktools">
+            <div class="qtools" id="search_btn"><i class='fas fa-search' style='font-size:16px'></i></div>
+            <div class="findReplaceTool">
+                <input type="text" id="searchInput" placeholder="Search">
+                <i class="fa fa-close" style="float: right;padding: 2px;" id="findtoolclose"></i>
+                <br>
+                <input type="text" id="replaceInput" placeholder="Replace with">
+                <br>
+                <button id="replaceButton">Replace</button>
+                <button id="replaceAllButton">Replace All</button>
+                <button id="caseSensitiveButton">Case Sensitive</button><br>
+                <span id="searchCount"></span>
+            </div>
+            <!-- <div class="qtools"><i class="fa-solid fa-shield-halved"></i></div> -->
+        </div>
+    </div>
+    <div id="container">
+        <!-- <div class="MenuBar">
+            <div class="menu"><i class="fa-solid fa-house"></i></div>
+        </div> -->
+        <div id="nums">
+            <span>1</span>
+        </div>
+        <div id="editwrapper">
+            <div id="edit" contenteditable="true">
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="status" onclick="demo()"><i class="fa-solid fa-shield"></i></div>
+        <div class="discription">Discription OF options</div>
+        <div class="others"></div>
+        <div class="notificaton"><i class="fa-solid fa-bell"></i></div>
+    </div>
+
+    <div class="message" id="message">
+</body>
+<script>
+    $(document).ready(function () {
+        $('#edit').css('min-height', $('#edit').height());
+        $('#edit').html('');
+        var currentHeight = $('#edit').height();
+        var lineHeight = currentHeight;
+        $('#edit').keyup(function () {
+            // console.log("this");
+            if ($(this).height() != currentHeight) {
+                // console.log("condition");
+                currentHeight = $(this).height();
+                var lines = currentHeight / lineHeight;
+                $('#nums').html('')
+                for (i = 1; i < lines + 1; i++) {
+                    $('#nums').append('<span>' + i + '</span>')
+                }
+            }
+        });
+    });
+</script>
+<script src="function.js"></script>
+
+</html>

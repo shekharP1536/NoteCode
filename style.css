@@ -1,0 +1,398 @@
+body {
+    margin: 0px;
+}
+#container {
+    /* border: 2px solid gray; */
+    display: flex;
+    /* width: 200px; */
+}
+#nums {
+    width: 25px;
+}
+#nums span {
+    /* width: 100%; */
+    text-align: right;
+    display: block;
+    background-color: lightgrey;
+    cursor: pointer;
+    text-align: center;
+}
+#nums span:hover {
+    background-color: rgb(139, 139, 139);
+}
+#edit {
+    outline: none;
+    padding-bottom: 150px;
+    position: sticky;
+    bottom: 60px;
+    max-height: 95%;
+    /* height: 100%; */
+}
+#edit div:active {
+    border: 1px solid rgba(211, 211, 211, 0.308);
+}
+div#edit>div:nth-of-type(2n+1) {
+    background-color: rgba(248, 248, 248, 0.445);
+}
+
+#editwrapper {
+    width: 100%;
+}
+
+#content {
+    float: right;
+    width: 100%;
+    /* height: 95%;  */
+    position: fixed;
+    overflow-y: auto;
+    padding: 5px;
+    padding-left: 25px;
+    border: 1px solid gray;
+}
+
+#content:focus {
+    outline: none;
+    box-shadow: 2px -3px 42px 11px rgba(202, 203, 240, 0.24);
+}
+#searchInput {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+#replaceInput {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+#replaceButton,
+#replaceAllButton,
+#caseSensitiveButton {
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+#caseSensitiveButton.active {
+    background-color: #004a70;
+}
+
+#searchCount {
+    margin-left: 10px;
+    font-style: italic;
+    color: #777;
+}
+
+.highlight {
+    background-color: #ffff00 !important;
+}
+
+#edit {
+    border: 1px solid rgba(204, 204, 204, 0.219);
+    border-radius: 3px;
+    /* padding: 10px; */
+    /* min-height: 150px; */
+}
+.findReplaceTool{
+    display: none;
+    position: fixed;
+    right: 20px;
+    z-index: 2;
+    width: fit-content;
+    padding: 2px;
+    border: 1px solid rgba(128, 128, 128, 0.356);
+    background-color: white;
+}
+.message:hover {
+    /* background-color:; */
+    margin: 2px;
+}
+
+.message {
+    outline: 1px solid red;
+    border-radius: 2px;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 3px;
+    cursor: pointer;
+    padding-right: 3px;
+    float: right;
+    position: absolute;
+    right: 1px;
+    bottom: 25px;
+
+}
+
+option {
+    padding: 2px;
+}
+
+#toolbar {
+    display: inline-flex;
+    margin-bottom: 1px;
+    /* background-color: blueviolet; */
+    cursor: pointer;
+}
+
+.tools:hover {
+    background-color: rgba(224, 222, 222, 0.329);
+}
+
+.tools {
+    border-radius: 3px;
+    padding-bottom: 1PX;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin: 1px;
+    margin-right: 11px;
+    width: fit-content;
+}
+
+.quicktools {
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+    text-align: center;
+    padding: 2px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 1px;
+    display: flex;
+    outline: 1px solid black;
+    width: 100%;
+    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    /* text-align: center; */
+}
+
+.status {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding: 2px;
+    cursor: pointer;
+    flex: 0%;
+    background-color: rgb(231, 226, 226);
+}
+
+.discription {
+    width: 100%;
+    padding: 1px;
+    margin-left: 1px;
+    background-color: rgb(180, 186, 240);
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.notificaton {
+    width: fit-content;
+    float: right;
+    text-align: center;
+    flex: 0%;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding: 2px;
+    cursor: pointer;
+    background-color: rgb(231, 226, 226);
+}
+
+#lines {
+    display: flex;
+    padding-top: 5px;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* //Options */
+.options {
+    padding: 2px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 1px;
+
+}
+
+.options:hover {
+    background-color: #ddd;
+
+}
+
+.fileoptions {
+    display: block;
+    width: fit-content;
+    position: abolute;
+}
+
+.fileDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+}
+
+.fileDropContent a:hover {
+    background-color: #ddd;
+}
+
+#file:hover .fileDropContent {
+    display: block;
+}
+
+.fileDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+
+}
+
+#file:hover .fileDropContent {
+    display: block;
+}
+
+.EditDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+
+}
+
+#EditTool:hover .EditDropContent {
+    display: block;
+}
+
+.SelectionDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+
+}
+
+#Selection:hover .SelectionDropContent {
+    display: block;
+}
+
+.ViewDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+
+}
+
+#View:hover .ViewDropContent {
+    display: block;
+}
+.ToolsDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+
+}
+
+#Tools:hover .ToolsDropContent {
+    display: block;
+}
+
+.HelpDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+
+}
+
+#Help:hover .HelpDropContent {
+    display: block;
+}
+.RunDropContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    outline: 1px solid rgba(158, 158, 158, 0.425);
+
+}
+
+#Run span:hover .RunDropContent {
+    display: block;
+}
+#Run span{
+    padding:1px;
+    margin: 1px;
+    text-align: center;
+    margin-left: 1px;
+    margin-right: 1px;
+    border-left: 5px solid rgba(100, 100, 100, 0.014);
+    border-right: 5px solid rgba(100, 100, 100, 0.014);
+}
+#Run span:hover {
+    background-color: rgb(141, 139, 139);
+}
+/* .MenuBar{
+    width:fit-content;
+}
+.Menu i{
+    font-size: 20px;
+} */
+.shortcut{
+    /* outline: 1px solid grey; */
+    border-radius: 3px;
+    color: rgb(58, 57, 57);
+    margin-left: 15px;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 14px;
+    float: right;
+    text-align: end;
+    font-family: cursive;
+    background-color: rgb(199, 197, 197);
+}
+.theme{
+    margin-left: 10px;
+    border-radius: 3px;
+    padding: 1px;
+}
+.theme:hover{
+    background-color: rgba(180, 180, 180, 0.781);
+}
+#search{
+    display: none;
+}
