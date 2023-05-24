@@ -110,17 +110,13 @@ div#edit>div:nth-of-type(2n+1) {
     border: 1px solid rgba(128, 128, 128, 0.356);
     background-color: white;
 }
-.message:hover {
-    /* background-color:; */
-    margin: 2px;
-}
 
 .message {
-    outline: 1px solid red;
+    outline: 1px solid rgba(128, 128, 128, 0.452);
     border-radius: 2px;
     width: fit-content;
-    padding: 1px;
-    padding-left: 3px;
+    /* padding: 1px; */
+    /* padding-left: 3px; */
     cursor: pointer;
     padding-right: 3px;
     float: right;
@@ -395,4 +391,18 @@ option {
 }
 #search{
     display: none;
+}
+.messageBox:hover{
+    background-color: rgb(199, 199, 199);
+    padding-left: 3px;
+}
+#edit span:focus{
+    background-color: #777;
+}
+#paste{
+    border: none;
+
+}
+.tools{
+    user-select: none;
 }

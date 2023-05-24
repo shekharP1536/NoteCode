@@ -58,7 +58,7 @@ $(document).ready(function () {
     });
 
     function highlightText(searchText) {
-        var content = $('#edit').text();
+        var content = $('#edit').html();
         var flags = 'gi';
         if (caseSensitive) {
             flags = 'g';
@@ -75,23 +75,15 @@ $(document).ready(function () {
         var count = (highlightedContent.match(/<span class="highlight">/g) || []).length;
         return count;
     }
-
     function replaceTextInContent(searchText, replaceText) {
-        var content = $('#edit').html();
-        var flags = 'gi';
-        if (caseSensitive) {
-            flags = 'g';
+        var $currentHighlight = $('.highlight.current');
+        if ($currentHighlight.length > 0) {
+            $currentHighlight.text(replaceText);
+            $currentHighlight.removeClass('highlight current');
+            $('#searchCount').text('1 match replaced');
         }
-
-        var regex = new RegExp(escapeRegExp(searchText), flags);
-
-        var replacedContent = content.replace(regex, replaceText);
-        $('#edit').html(replacedContent); hii
-
-        var count = (replacedContent.match(new RegExp(escapeRegExp(replaceText), flags)) || []).length;
-        $('#searchCount').text(count + ' matches replaced');
     }
-
+    
     function replaceAllTextInContent(searchText, replaceText) {
         var content = $('#edit').html();
         var flags = 'gi';
@@ -124,7 +116,7 @@ $(document).ready(function () {
         }
     });
     $("#selectAll").click(function () { 
-        var div = document.getElementById("div");
+        var div = document.getElementById("edit");
         var range = document.createRange();
         range.selectNodeContents(div);
         var selection = window.getSelection();
@@ -140,44 +132,79 @@ var div = document.getElementById("edit");
 // Add a click event listener to the button
 button.addEventListener("click", function() {
   // Create a range object that contains the text content of the div
-  var range = document.createRange();
-  range.selectNodeContents(div);
-  // Get the current selection object
-  var selection = window.getSelection();
-  // Remove any existing ranges from the selection
-  selection.removeAllRanges();
-  // Add the new range to the selection
-  selection.addRange(range);
+  const contentElement = document.querySelector('#edit');
+    const range = document.createRange();
+    range.selectNodeContents(contentElement);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
   showMessage("selected All");
 });
+
+var copybtn = document.getElementById("copy");
+copybtn.addEventListener("click", copySelectedText);
+var pastebtn = document.getElementById("paste");
+pastebtn.addEventListener("click",pasteText);
+var cutbtn = document.getElementById("cut");
+cutbtn.addEventListener("click", cutSelectedText);
 // Get the buttons and the div elements
-var copy = document.getElementById("copy");
-var paste = document.getElementById("paste");
-var cut = document.getElementById("cut");
+function selectAllText() {
+    
+  }
 
-// Add a click event listener to the copy button
-copy.addEventListener("click", function() {
-  // Select the text content of the div
-  var range = document.createRange();
-  range.selectNodeContents(div);
-  var selection = window.getSelection();
-  selection.removeAllRanges();
-  selection.addRange(range);
-  // Execute the copy command
-  document.execCommand("copy");
-  showMessage("copy to Clipboard");
-});
+  function copySelectedText() {
+    const contentElement = document.querySelector('#edit');
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const clonedRange = range.cloneRange();
+    clonedRange.selectNodeContents(contentElement);
+    selection.removeAllRanges();
+    selection.addRange(clonedRange);
 
-// Add a click event listener to the paste button
-paste.addEventListener("click", function() {
-  // Execute the paste command
-  document.execCommand("paste");
-  showMessage("paste from clipboard")
-});
+    try {
+      document.execCommand('copy');
+      console.log('Text copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy text to clipboard', err);
+    }
 
-// Add a click event listener to the cut button
-cut.addEventListener("click", function() {
-  // Execute the cut command
-  document.execCommand("cut");
-  showMessage("text cut successfully");
-});
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+  function pasteText(e) {
+    e.preventDefault();
+    navigator.clipboard.readText()
+        .then(text => {
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          range.deleteContents();
+          range.insertNode(document.createTextNode(text));
+          selection.removeAllRanges();
+        //   selection.addRange(range);
+        })
+        .catch(err => {
+          console.error('Failed to read text from clipboard', err);
+        });
+  }
+
+  function cutSelectedText() {
+    const contentElement = document.querySelector('.content');
+      const selection = window.getSelection();
+      const range = selection.getRangeAt(0);
+      const clonedRange = range.cloneRange();
+      clonedRange.selectNodeContents(contentElement);
+      const selectedText = clonedRange.toString();
+      const textToStore = selectedText;
+
+      if (selectedText.length > 0) {
+        try {
+          document.execCommand('copy');
+          console.log('Text copied to clipboard:', selectedText);
+          range.deleteContents();
+          selection.removeAllRanges();
+        } catch (err) {
+          console.error('Failed to copy text to clipboard', err);
+        }
+      }
+  }

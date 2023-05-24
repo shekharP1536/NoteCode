@@ -1,11 +1,18 @@
 function showMessage(message) {
     var messageElement = document.getElementById('message');
-    messageElement.innerHTML = message;
-    messageElement.style.display = "block";
+    var newbox= document.createElement("div");
+    newbox.className = "messageBox"
+    newbox.innerHTML = message
+    messageElement.appendChild(newbox);
+    newbox.style.display = "block";
+    newbox.addEventListener("click",() =>{
+        newbox.style.display ="none";
+    })
     setTimeout(function () {
-        messageElement.innerHTML = '';
-        messageElement.style.display = "none";
-    }, 3000);
+        newbox.style.display = "none";
+        // messageElement.innerHTML = '';
+        // messageElement.style.display = "none";
+    }, 5000);
 }
 window.addEventListener("load", () =>{
 showMessage("Welcome!");

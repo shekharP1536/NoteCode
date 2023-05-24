@@ -31,7 +31,7 @@
                 <hr>
                 <div class="options" id="cut">Cut<span class="shortcut">Ctrl+X</span></div>
                 <div class="options" id="copy">Copy<span class="shortcut">Ctrl+C</span></div>
-                <div class="options" id="paste">Paste<span class="shortcut">Ctrl+V</span></div>
+                <button class="options" id="paste">Paste<span class="shortcut">Ctrl+V</span></button>
                 <hr>
                 <div class="options">Find<span class="shortcut">Ctrl+F</span></div>
                 <div class="options">Replace<span class="shortcut">Ctrl+H</span></div>
@@ -64,7 +64,7 @@
             <div class="ToolsDropContent">
                 <div class="options">colorpicker</div>
                 <div class="options">Symbols</div>
-            
+
 
             </div>
         </div>
@@ -127,6 +127,7 @@
         $('#edit').html('');
         var currentHeight = $('#edit').height();
         var lineHeight = currentHeight;
+        document.getElementById("edit").addEventListener("change", updateline)
         $('#edit').keyup(function () {
             // console.log("this");
             if ($(this).height() != currentHeight) {
@@ -140,6 +141,16 @@
             }
         });
     });
+    function updateline(){}
+    if ($(this).height() != currentHeight) {
+                // console.log("condition");
+                currentHeight = $(this).height();
+                var lines = currentHeight / lineHeight;
+                $('#nums').html('')
+                for (i = 1; i < lines + 1; i++) {
+                    $('#nums').append('<span>' + i + '</span>')
+                }
+            }
 </script>
 <script src="function.js"></script>
 
